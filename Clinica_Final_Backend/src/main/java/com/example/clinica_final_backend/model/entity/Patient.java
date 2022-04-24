@@ -1,4 +1,4 @@
-package com.example.clinica_final_backend.model;
+package com.example.clinica_final_backend.model.entity;
 
 import java.util.Date;
 

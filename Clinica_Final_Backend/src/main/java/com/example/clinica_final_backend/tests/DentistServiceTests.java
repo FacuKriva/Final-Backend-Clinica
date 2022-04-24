@@ -1,7 +1,7 @@
 package com.example.clinica_final_backend.tests;
 
 import com.example.clinica_final_backend.dao.DentistDaoH2;
-import com.example.clinica_final_backend.model.Dentist;
+import com.example.clinica_final_backend.model.entity.Dentist;
 import com.example.clinica_final_backend.service.DentistService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer;

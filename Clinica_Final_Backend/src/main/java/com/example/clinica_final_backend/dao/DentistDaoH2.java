@@ -1,6 +1,6 @@
 package com.example.clinica_final_backend.dao;
 
-import com.example.clinica_final_backend.model.Dentist;
+import com.example.clinica_final_backend.model.entity.Dentist;
 import org.apache.log4j.Logger;
 import java.sql.*;
 import java.util.ArrayList;

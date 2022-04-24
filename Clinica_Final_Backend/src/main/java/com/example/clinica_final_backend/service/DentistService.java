@@ -2,7 +2,7 @@ package com.example.clinica_final_backend.service;
 
 import com.example.clinica_final_backend.dao.IDao;
 import com.example.clinica_final_backend.dao.DentistDaoH2;
-import com.example.clinica_final_backend.model.Dentist;
+import com.example.clinica_final_backend.model.entity.Dentist;
 
 import java.util.List;
 
