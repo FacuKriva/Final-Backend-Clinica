@@ -1,42 +1,42 @@
 package com.example.clinica_final_backend.dao;
 
-import com.example.clinica_final_backend.model.Odontologist;
+import com.example.clinica_final_backend.model.Dentist;
 import org.apache.log4j.Logger;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OdontologistDaoH2 implements IDao<Odontologist> {
+public class DentistDaoH2 implements IDao<Dentist> {
 
-    public final static Logger logger = Logger.getLogger(OdontologistDaoH2.class.toString());
+    public final static Logger logger = Logger.getLogger(DentistDaoH2.class.toString());
 
     private final static String DB_JDBC_DRIVER = "org.h2.Driver";
-    private final static String DB_URL = "jdbc:h2:~/odont;INIT=RUNSCRIPT FROM 'classpath:create.sql'";
+    private final static String DB_URL = "jdbc:h2:~/dentist;INIT=RUNSCRIPT FROM 'create.sql'";
     private final static String DB_USER = "sa";
     private final static String DB_PASSWORD = "";
 
-    public final static String SQL_INSERT = "INSERT INTO odontologists (registrationNumber, name, surname) VALUES (?,?,?)";
-    public final static String SQL_SELECT = "SELECT * FROM odontologists WHERE id = ?";
-    private static final String SQL_SELECT_ALL = "SELECT * FROM odontologists";
+    public final static String SQL_INSERT = "INSERT INTO dentists (registrationNumber, firstName, lastName) VALUES (?,?,?)";
+    public final static String SQL_SELECT = "SELECT * FROM dentists WHERE id = ?";
+    private static final String SQL_SELECT_ALL = "SELECT * FROM dentists";
 
-    public OdontologistDaoH2() {}
+    public DentistDaoH2() {}
 
-    private static Connection getConnection() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-        Class.forName(DB_JDBC_DRIVER).newInstance();
+    private static Connection getConnection() throws SQLException, ClassNotFoundException {
+        Class.forName(DB_JDBC_DRIVER);
         return DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
     }
 
     @Override
-    public Odontologist register(Odontologist odontologist) {
+    public Dentist register(Dentist dentist) {
         Connection connection;
 
         try {
             connection = getConnection();
             PreparedStatement pstmt = connection.prepareStatement(SQL_INSERT);
-            pstmt.setInt(1, Odontologist.getRegistrationNumber());
-            pstmt.setString(2, Odontologist.getName());
-            pstmt.setString(3, Odontologist.getSurname());
+            pstmt.setInt(1, Dentist.getRegistrationNumber());
+            pstmt.setString(2, Dentist.getFirstName());
+            pstmt.setString(3, Dentist.getLastName());
 
             pstmt.executeUpdate();
             pstmt.close();
@@ -47,15 +47,15 @@ public class OdontologistDaoH2 implements IDao<Odontologist> {
             logger.error("ERROR: Please make sure you're inserting the data correctly");
 
         }
-        logger.info(Odontologist.getSurname() + ", " + Odontologist.getName() + " " + "with registration number: " +
-                Odontologist.getRegistrationNumber() + ", " + " has been successfully added to the data base.");
+        logger.info(Dentist.getLastName() + ", " + Dentist.getFirstName() + " " + "with registration number: " +
+                Dentist.getRegistrationNumber() + ", " + " has been successfully added to the data base.");
 
-        return odontologist;
+        return dentist;
     }
 
-    public Odontologist findById(Integer id) {
+    public Dentist findById(Integer id) {
         Connection connection;
-        Odontologist answer = null;
+        Dentist answer = null;
 
         try {
             connection = getConnection();
@@ -66,10 +66,10 @@ public class OdontologistDaoH2 implements IDao<Odontologist> {
             ResultSet rs = pstmt.executeQuery();
 
             if(rs.next()){
-                answer = new Odontologist(rs.getLong("id"),
+                answer = new Dentist(rs.getInt("id"),
                         rs.getInt("registrationNumber"),
-                        rs.getString("name"),
-                        rs.getString("surname"));
+                        rs.getString("firstName"),
+                        rs.getString("lastName"));
             }
             System.out.println(answer);
             pstmt.close();
@@ -85,10 +85,10 @@ public class OdontologistDaoH2 implements IDao<Odontologist> {
     }
 
     @Override
-    public List<Odontologist> showAll() {
+    public List<Dentist> showAll() {
 
         Connection connection;
-        List<Odontologist> odontologists = new ArrayList<>();
+        List<Dentist> dentists = new ArrayList<>();
 
         try {
             connection = getConnection();
@@ -97,11 +97,11 @@ public class OdontologistDaoH2 implements IDao<Odontologist> {
             ResultSet result = pstmt.executeQuery();
 
             while (result.next()){
-                Long id = result.getLong("id");
+                Integer id = result.getInt("id");
                 Integer registrationNumber = result.getInt("registrationNumber");
-                String name = result.getString("name");
-                String surname = result.getString("surname");
-                odontologists.add(new Odontologist(id, registrationNumber, name, surname));
+                String firstName = result.getString("firstName");
+                String lastName = result.getString("lastName");
+                dentists.add(new Dentist(id, registrationNumber,firstName, lastName));
 
             }
             logger.info("Here's the full list of all registered odontologists" );
@@ -114,7 +114,7 @@ public class OdontologistDaoH2 implements IDao<Odontologist> {
 
         }
 
-        return odontologists;
+        return dentists;
 
     }
 
