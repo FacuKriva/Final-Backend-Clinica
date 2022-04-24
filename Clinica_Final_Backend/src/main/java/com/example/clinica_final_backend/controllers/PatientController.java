@@ -10,7 +10,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping(path = "/patient")
-@CrossOrigin (origins = "http://localhost:3000")
+@CrossOrigin (origins = "http://localhost:8080")
 public class PatientController {
     @Autowired
     private PatientService service;

@@ -11,7 +11,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/appointment")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:8080")
 public class AppointmentController {
 
     private AppointmentService service;
