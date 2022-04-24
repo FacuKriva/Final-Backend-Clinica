@@ -17,7 +17,7 @@ public class AppointmentController {
     private AppointmentService service;
 
     @Autowired
-    public void setAppointmentService(AppointmentService service) { this.service = service; }
+    public void setService(AppointmentService service) { this.service = service; }
 
     @PostMapping
     public ResponseEntity<AppointmentDTO> addNewAppointment(@RequestBody AppointmentDTO appointmentDTO) {
