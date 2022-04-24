@@ -1,4 +1,0 @@
-CREATE TABLE IF NOT EXISTS odontologists (id BIGINT AUTO_INCREMENT PRIMARY KEY,
-registrationNumber INT,
-name VARCHAR(250),
-surname VARCHAR(250));
