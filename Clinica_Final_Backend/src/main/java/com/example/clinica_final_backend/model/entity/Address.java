@@ -1,5 +1,6 @@
 package com.example.clinica_final_backend.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,19 +10,23 @@ import javax.persistence.*;
 @Table (name = "address")
 @Getter
 @Setter
+
 public class Address {
+
     // Attributes
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
-    @Column (name = "street")
     private String street;
-    @Column (name = "number")
     private String number;
-    @Column (name = "city")
     private String city;
-    @Column (name = "state")
     private String state;
+
+    // Associations
+    @ManyToOne
+    @JoinColumn(name = "patient_id")
+    @JsonIgnore
+    private Patient patient;
 
 
 }

@@ -10,23 +10,22 @@ import java.time.LocalDateTime;
 @Table (name = "appointments")
 @Getter
 @Setter
-public class Appointments {
+
+public class Appointment {
 
     // Attributes
-
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
-    @Column (name = "date_time")
     private LocalDateTime dateTime;
 
-
+    // Associations
     @ManyToOne
-    @JoinColumn(name = "patient_id", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name = "patient_id")
     private Patient patient;
 
     @ManyToOne
-    @JoinColumn(name = "doctor_id", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name = "dentist_id")
     private Dentist dentist;
 
 }

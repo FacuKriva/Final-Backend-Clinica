@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class AppointmentsDTO {
+public class AppointmentDTO {
 
     private Long id;
     private LocalDateTime dateTime;
@@ -16,6 +16,6 @@ public class AppointmentsDTO {
     @JsonIgnoreProperties ({"firstName"})
     private DentistDTO dentist;
 
-    @JsonIgnoreProperties ({"dni", "admissionDate", "address"})
+    @JsonIgnoreProperties ({"dni", "admissionDate", "addresses"})
     private PatientDTO patient;
 }

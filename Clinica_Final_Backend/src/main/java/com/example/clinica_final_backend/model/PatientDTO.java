@@ -1,10 +1,10 @@
 package com.example.clinica_final_backend.model;
 
-import com.example.clinica_final_backend.model.entity.Address;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -15,5 +15,5 @@ public class PatientDTO {
     private String lastName;
     private Integer dni;
     private Date admissionDate;
-    private Address address;
+    private Set<AddressDTO> addresses;
 }
