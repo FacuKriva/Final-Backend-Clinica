@@ -9,6 +9,6 @@ public interface IPatientService {
     PatientDTO addNewPatient(PatientDTO patientDTO);
     PatientDTO searchPatientById(Long id);
     Set<PatientDTO> searchAllPatients();
-    void updatePatient(PatientDTO patientDTO);
+    void updatePatient(Long id, PatientDTO patientDTO);
     void removePatient(Long id);
 }

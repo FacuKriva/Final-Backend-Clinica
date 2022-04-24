@@ -16,7 +16,7 @@ public interface IDentistService {
     Set<DentistDTO> searchAllDentists();
 
     //Update Dentist by ID
-    void updateDentist (DentistDTO dentistDTO);
+    void updateDentist (Long id, DentistDTO dentistDTO);
 
     //Remove Dentist by ID
     void removeDentist (Long id);
